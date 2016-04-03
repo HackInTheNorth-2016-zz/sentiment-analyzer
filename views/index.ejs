@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Project X</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <style type="text/css">
+    #myForm input{
+      margin-top: 3px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse" role="navigation">
+  </nav>
+    <div class="container">
+        <span>Enter your product name: </span>
+        <input type="textarea"></input>
+        <a class="btn btn-default">Analyze</a>
+        <%= l %>
+        <!-- <div class="row">
+            <div class="col-md-3">
+              <form id="myForm" class="row">
+                <label class="col-xs-6">Value for A</label><input class="col-xs-6" type="text" name="fname">
+                <label class="col-xs-6">Value for B </label><input class="col-xs-6" type="text" name="lname">
+                <label class="col-xs-6">Labbel </label><input class="col-xs-6" type="text" name="label">
+                <input class="submit btn btn-primary pull-right" type="submit" value="Send" />
+              </form>
+            </div>
+            <div class="col-md-9">
+                <div class="thumbnail">
+                    <div id="parent" class="canvas-div" style="padding-left: 18px;">
+                      <canvas id="updating-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div class="container">
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <center>Copyright &copy; Artificial Saint 2016</center>
+                </div>
+            </div>
+        </footer>
+    </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+  <script>
+    var canvas = document.getElementById('updating-chart'),
+  ctx = canvas.getContext('2d'),
+  startingData = {
+    labels: [1, 2, 3, 4, 5, 6, 7],
+    datasets: [
+        {
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            data: [65, 59, 80, 81, 56, 55, 40]
+        },
+        {
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            data: [28, 48, 40, 19, 86, 27, 90]
+        }
+    ]
+  },
+  latestLabel = startingData.labels[6];
+var myLiveChart = new Chart(ctx).Line(startingData, {animationSteps: 15});
+$('#myForm').submit(function () {
+  var x = document.getElementById("myForm");
+  myLiveChart.addData([x.elements[0].value, x.elements[1].value], x.elements[2].value);
+  myLiveChart.removeData();
+  myForm.reset();
+  return false;
+});
+
+  </script>
+</body>
+</html>
