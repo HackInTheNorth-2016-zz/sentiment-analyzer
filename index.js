@@ -9,11 +9,16 @@ var body = new EventEmitter();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use('/static', express.static(__dirname + '/public'));
+app.use('/static', express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  res.render('home');
 });
 
+
+app.get('/visual', function (req, res) {
+  res.render('visual');
+});
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
@@ -28,6 +33,7 @@ db.serialize(function() {
       z = z + k;
       body.b = z;
       i++;
+      console.log(k*10);
       if(i==6){
       body.emit('update');
     }
@@ -36,7 +42,7 @@ db.serialize(function() {
 var a;
 body.on('update', function () {
       // a = a + m/10;
-  res.render('index', {l: body.b});
+  res.render('index', {l: body.b*100});
 });
 db.close();
 });
